@@ -1,0 +1,18 @@
+.header {
+  background-color: rgb(157, 170, 183);
+}
+.navLink {
+  display: inline-block;
+  padding: 1em 1.7em;
+  background-color: lightslategray;
+}
+
+.img {
+  margin-top: 5px;
+  width: auto;
+  height: 40px;
+}
+.flexingNav {
+  display: flex;
+  justify-content: space-between;
+}
