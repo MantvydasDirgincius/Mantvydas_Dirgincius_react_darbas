@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useAuthCtx } from '../../store/authContext';
 
 import css from './Navigation.module.css';
 
 function Navigation() {
+  const { isUserLoggedIn, logout } = useAuthCtx();
   return (
     <header className={css.header}>
       <div className={`container ${css.flexingNav}`}>
@@ -15,24 +17,31 @@ function Navigation() {
           />
         </Link>
         <nav>
-          <NavLink to='/' className={css.navLink}>
-            Home
-          </NavLink>
-
-          <NavLink to='/login' className={css.navLink}>
-            Login
-          </NavLink>
-
-          <NavLink to='/login' className={css.navLink}>
-            log out
-          </NavLink>
-
-          <NavLink to='/register' className={css.navLink}>
-            Register
-          </NavLink>
-          <NavLink to='/Add' className={css.navLink}>
-            Add
-          </NavLink>
+          {isUserLoggedIn && (
+            <NavLink to='/' className={css.navLink}>
+              Home
+            </NavLink>
+          )}
+          {!isUserLoggedIn && (
+            <NavLink to='/login' className={css.navLink}>
+              Login
+            </NavLink>
+          )}
+          {isUserLoggedIn && (
+            <NavLink to='/Add' className={css.navLink}>
+              Add
+            </NavLink>
+          )}
+          {isUserLoggedIn && (
+            <NavLink to='/login' onClick={logout} className={css.navLink}>
+              log out
+            </NavLink>
+          )}
+          {!isUserLoggedIn && (
+            <NavLink to='/register' className={css.navLink}>
+              Register
+            </NavLink>
+          )}
         </nav>
       </div>
     </header>

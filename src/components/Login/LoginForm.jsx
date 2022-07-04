@@ -25,10 +25,10 @@ function LoginForm({ onSuccessLogin }) {
       );
       console.log('result ===', result);
       console.log('result.token ===', result.token);
-      //   if (!result.response.status === 400) {
-      //     console.log('False token');
-      //     return;
-      //   }
+      if (!result.token) {
+        console.log('False token');
+        return;
+      }
 
       onSuccessLogin();
 

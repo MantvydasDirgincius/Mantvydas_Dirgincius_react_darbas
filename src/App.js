@@ -5,24 +5,33 @@ import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import Register from './pages/Register/Register';
 import Add from './pages/Add/Add';
+import { AuthContext } from './store/authContext';
+import { useContext } from 'react';
 
 function App() {
+  const { isUserLoggedIn } = useContext(AuthContext);
   return (
     <div className='App'>
       <Navigation />
       <Switch>
-        <Route path='/add'>
-          <Add />
-        </Route>
+        {isUserLoggedIn && (
+          <Route path='/add'>
+            <Add />
+          </Route>
+        )}
+
         <Route path='/login'>
           <Login />
         </Route>
         <Route path='/register'>
           <Register />
         </Route>
-        <Route path='/'>
-          <Home />
-        </Route>
+        {isUserLoggedIn && (
+          <Route path='/'>
+            <Home />
+          </Route>
+        )}
+
         <Route path='*'>
           <h2>404 Not found</h2>
         </Route>

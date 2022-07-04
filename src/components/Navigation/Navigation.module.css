@@ -1,9 +1,10 @@
 .header {
   background-color: rgb(157, 170, 183);
+  display: block;
 }
 .navLink {
   display: inline-block;
-  padding: 1em 1.7em;
+  padding: 16px 32px;
   background-color: lightslategray;
 }
 
