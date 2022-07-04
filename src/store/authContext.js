@@ -1,22 +1,27 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const AuthContext = createContext({
-  login: () => {},
-  logout: () => {},
-  token: '',
+  login() {},
+  logout() {},
+  isUserLoggedIn: '',
 });
+
 AuthContext.displayName = 'AuthContext';
 
 function AuthProvider(props) {
-  const [token, setToken] = useState(null);
-  const isUserLoggedIn = token === null ? false : true;
+  const [token, setToken] = useState(localStorage.getItem('token-React'));
 
-  function login(usertoken) {
-    setToken(usertoken);
+  const isUserLoggedIn = !!token;
+
+  function login(userToken) {
+    setToken(userToken);
+    localStorage.setItem('token-React', userToken);
   }
   function logout() {
     setToken(null);
+    localStorage.removeItem('token-React');
   }
+
   const ctx = {
     login,
     logout,
@@ -26,3 +31,8 @@ function AuthProvider(props) {
 }
 
 export default AuthProvider;
+
+// custom hook for context
+export function useAuthCtx() {
+  return useContext(AuthContext);
+}
