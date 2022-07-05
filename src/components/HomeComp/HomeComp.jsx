@@ -19,6 +19,7 @@ function HomeComp() {
 
   useEffect(() => {
     GetingRecords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
