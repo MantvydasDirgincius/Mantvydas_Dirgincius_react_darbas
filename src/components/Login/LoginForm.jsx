@@ -37,33 +37,36 @@ function LoginForm({ onSuccessLogin }) {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <input
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.email}
-        className={formik.touched.email && formik.errors.email ? css.errorInput : ''}
-        name='email'
-        type='text'
-        placeholder='Your Email'
-      />
-      {formik.touched.email && formik.errors.email && (
-        <p className={css.errorMsg}>{formik.errors.email}</p>
-      )}
-      <input
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.password}
-        className={formik.touched.password && formik.errors.password ? css.errorInput : ''}
-        name='password'
-        type='password'
-        placeholder='Your password'
-      />
-      {formik.touched.password && formik.errors.password && (
-        <p className={css.errorMsg}>{formik.errors.password}</p>
-      )}
-      <button type='submit'>Login</button>
-    </form>
+    <div>
+      <h1>Sign up</h1>
+      <form onSubmit={formik.handleSubmit}>
+        <input
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          className={formik.touched.email && formik.errors.email ? css.errorInput : ''}
+          name='email'
+          type='text'
+          placeholder='Your Email'
+        />
+        {formik.touched.email && formik.errors.email && (
+          <p className={css.errorMsg}>{formik.errors.email}</p>
+        )}
+        <input
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          className={formik.touched.password && formik.errors.password ? css.errorInput : ''}
+          name='password'
+          type='password'
+          placeholder='Your password'
+        />
+        {formik.touched.password && formik.errors.password && (
+          <p className={css.errorMsg}>{formik.errors.password}</p>
+        )}
+        <button type='submit'>Login</button>
+      </form>
+    </div>
   );
 }
 
