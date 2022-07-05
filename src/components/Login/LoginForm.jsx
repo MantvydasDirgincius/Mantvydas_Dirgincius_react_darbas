@@ -38,7 +38,6 @@ function LoginForm({ onSuccessLogin }) {
 
   return (
     <div>
-      <h1>Sign up</h1>
       <form onSubmit={formik.handleSubmit}>
         <input
           onBlur={formik.handleBlur}

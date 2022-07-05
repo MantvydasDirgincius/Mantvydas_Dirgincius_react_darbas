@@ -13,7 +13,7 @@ export async function doPostRequest(url, values, token) {
     return data;
   } catch (error) {
     console.log('error ===', error);
-    return error.message;
+    return error.response.data;
   }
 }
 
