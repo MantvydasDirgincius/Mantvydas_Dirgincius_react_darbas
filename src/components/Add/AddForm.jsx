@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
 
-import { doAdd, doPostRequest } from '../../utils';
+import { doPostRequest } from '../../utils';
 import css from './AddForm.module.css';
 
 const initValues = {

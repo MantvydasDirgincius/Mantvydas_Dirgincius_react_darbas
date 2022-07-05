@@ -1,5 +1,4 @@
 import axios from 'axios';
-import App from './App';
 
 export async function doPostRequest(url, values, token) {
   try {
