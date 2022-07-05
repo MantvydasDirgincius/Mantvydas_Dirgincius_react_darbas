@@ -17,9 +17,13 @@ export async function doPostRequest(url, values, token) {
   }
 }
 
-export async function doGetRequest(url, values) {
+export async function doGetRequest(url, token) {
   try {
-    const { data } = await axios.get(url, values);
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+    const { data } = await axios.get(url, { headers: headers });
 
     return data;
   } catch (error) {

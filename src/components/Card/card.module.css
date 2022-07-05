@@ -1,0 +1,9 @@
+.card {
+  border: 1px solid black;
+}
+.cardTitle {
+  text-transform: uppercase;
+}
+.cardSub {
+  color: lightgray;
+}
