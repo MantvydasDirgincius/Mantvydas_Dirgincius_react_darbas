@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
@@ -12,6 +12,7 @@ const initValues = {
 };
 function LoginForm({ onSuccessLogin }) {
   const { login } = useContext(AuthContext);
+  const [err, setErr] = useState([]);
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
@@ -26,6 +27,7 @@ function LoginForm({ onSuccessLogin }) {
       console.log('result ===', result);
       console.log('result.token ===', result.token);
       if (!result.token) {
+        setErr(result.err);
         console.log('False token');
         return;
       }
@@ -37,14 +39,16 @@ function LoginForm({ onSuccessLogin }) {
   });
 
   return (
-    <div>
-      <h1>Sign up</h1>
-      <form onSubmit={formik.handleSubmit}>
+    <div className={css.div}>
+      <h1 className={css.title}>Sign up</h1>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
         <input
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.email}
-          className={formik.touched.email && formik.errors.email ? css.errorInput : ''}
+          className={`${css.input} ${
+            formik.touched.email && formik.errors.email ? css.errorInput : ''
+          }`}
           name='email'
           type='text'
           placeholder='Your Email'
@@ -52,11 +56,15 @@ function LoginForm({ onSuccessLogin }) {
         {formik.touched.email && formik.errors.email && (
           <p className={css.errorMsg}>{formik.errors.email}</p>
         )}
+        {err.length > 0 && <p className={css.errorMsg}>{err}</p>}
+
         <input
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.password}
-          className={formik.touched.password && formik.errors.password ? css.errorInput : ''}
+          className={`${css.input} ${
+            formik.touched.password && formik.errors.password ? css.errorInput : ''
+          }`}
           name='password'
           type='password'
           placeholder='Your password'
@@ -64,7 +72,10 @@ function LoginForm({ onSuccessLogin }) {
         {formik.touched.password && formik.errors.password && (
           <p className={css.errorMsg}>{formik.errors.password}</p>
         )}
-        <button type='submit'>Login</button>
+        {err.length > 0 && <p className={css.errorMsg}>{err}</p>}
+        <button className={css.button} type='submit'>
+          Login
+        </button>
       </form>
     </div>
   );

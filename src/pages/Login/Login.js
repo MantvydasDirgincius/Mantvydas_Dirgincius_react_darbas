@@ -5,7 +5,7 @@ import LoginForm from '../../components/Login/LoginForm';
 function Login() {
   const history = useHistory();
   function handleSuccessLogin() {
-    history.replace('/');
+    history.replace('/home');
   }
   return (
     <div>

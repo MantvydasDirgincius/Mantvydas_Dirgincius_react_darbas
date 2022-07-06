@@ -6,10 +6,11 @@ import css from './Navigation.module.css';
 
 function Navigation() {
   const { isUserLoggedIn, logout } = useAuthCtx();
+
   return (
     <header className={css.header}>
       <div className={`container ${css.flexingNav}`}>
-        <Link to={'/'}>
+        <Link to={'/home'}>
           <img
             className={css.img}
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png'
@@ -18,27 +19,27 @@ function Navigation() {
         </Link>
         <nav>
           {isUserLoggedIn && (
-            <NavLink to='/' className={css.navLink}>
+            <NavLink to='/home' className='navLink'>
               Home
             </NavLink>
           )}
           {!isUserLoggedIn && (
-            <NavLink to='/login' className={css.navLink}>
+            <NavLink exact to='/' className='navLink'>
               Login
             </NavLink>
           )}
           {isUserLoggedIn && (
-            <NavLink to='/Add' className={css.navLink}>
+            <NavLink to='/Add' className='navLink'>
               Add
             </NavLink>
           )}
           {isUserLoggedIn && (
-            <NavLink to='/login' onClick={logout} className={css.navLink}>
+            <NavLink exact to='/' onClick={logout} className='navLink'>
               log out
             </NavLink>
           )}
           {!isUserLoggedIn && (
-            <NavLink to='/register' className={css.navLink}>
+            <NavLink to='/register' className='navLink'>
               Register
             </NavLink>
           )}

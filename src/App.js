@@ -7,6 +7,7 @@ import Register from './pages/Register/Register';
 import Add from './pages/Add/Add';
 import { AuthContext } from './store/authContext';
 import { useContext } from 'react';
+import PageNotFound from './pages/404Page/PageNotFound';
 
 function App() {
   const { isUserLoggedIn } = useContext(AuthContext);
@@ -15,25 +16,23 @@ function App() {
       <Navigation />
       <Switch>
         {isUserLoggedIn && (
+          <Route path='/home'>
+            <Home />
+          </Route>
+        )}
+        {isUserLoggedIn && (
           <Route path='/add'>
             <Add />
           </Route>
         )}
-
-        <Route path='/login'>
-          <Login />
-        </Route>
         <Route path='/register'>
           <Register />
         </Route>
-        {isUserLoggedIn && (
-          <Route path='/'>
-            <Home />
-          </Route>
-        )}
-
+        <Route exact path='/'>
+          <Login />
+        </Route>
         <Route path='*'>
-          <h2>404 Not found</h2>
+          <PageNotFound />
         </Route>
       </Switch>
     </div>

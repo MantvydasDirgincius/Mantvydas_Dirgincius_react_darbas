@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { AuthContext } from '../../store/authContext';
 import { doGetRequest } from '../../utils';
 import CardList from '../Card/CardList';
+import css from './Home.module.css';
 
 function HomeComp() {
   const [record, setRecord] = useState([]);
+  const [haveRecords, setHaveRecords] = useState(false);
   const { token } = useContext(AuthContext);
 
   async function GetingRecords() {
@@ -13,7 +15,9 @@ function HomeComp() {
       'https://autumn-delicate-wilderness.glitch.me/v1/content/skills',
       token
     );
-    console.log('records ===', records);
+    if (records.length === 0) {
+      setHaveRecords(true);
+    }
     setRecord(records);
   }
 
@@ -23,9 +27,18 @@ function HomeComp() {
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
-      <CardList arr={record} />
+    <div className='container'>
+      <h1 className={css.title}>Home</h1>
+
+      {record.length === 0 ? (
+        haveRecords ? (
+          <h2 className={css.title}>Don't have record</h2>
+        ) : (
+          <h2 className={css.title}>Loading...</h2>
+        )
+      ) : (
+        <CardList arr={record} />
+      )}
     </div>
   );
 }
