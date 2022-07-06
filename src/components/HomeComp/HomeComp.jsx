@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { AuthContext } from '../../store/authContext';
 import { doGetRequest } from '../../utils';
 import CardList from '../Card/CardList';
+import css from './Home.module.css';
 
 function HomeComp() {
   const [record, setRecord] = useState([]);
@@ -23,8 +24,8 @@ function HomeComp() {
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
+    <div className='container'>
+      <h1 className={css.title}>Home</h1>
       <CardList arr={record} />
     </div>
   );

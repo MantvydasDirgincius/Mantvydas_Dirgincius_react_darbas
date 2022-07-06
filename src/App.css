@@ -6,6 +6,11 @@ body {
   background-color: rgb(235, 236, 240);
   font-family: 'Montserrat', sans-serif;
 }
+.card-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
 .container {
   max-width: 900px;
   margin: 0 auto;
