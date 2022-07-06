@@ -1,0 +1,14 @@
+.header {
+  background-color: #e1e1e4;
+  display: block;
+}
+
+.img {
+  margin-top: 5px;
+  width: auto;
+  height: 40px;
+}
+.flexingNav {
+  display: flex;
+  justify-content: space-between;
+}
