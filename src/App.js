@@ -7,6 +7,7 @@ import Register from './pages/Register/Register';
 import Add from './pages/Add/Add';
 import { AuthContext } from './store/authContext';
 import { useContext } from 'react';
+import PageNotFound from './pages/404Page/PageNotFound';
 
 function App() {
   const { isUserLoggedIn } = useContext(AuthContext);
@@ -31,11 +32,7 @@ function App() {
           <Login />
         </Route>
         <Route path='*'>
-          {isUserLoggedIn ? (
-            <h2> toks puslapis neegzsistuoja</h2>
-          ) : (
-            <h2>jus esate neprisiregistraves</h2>
-          )}
+          <PageNotFound />
         </Route>
       </Switch>
     </div>
