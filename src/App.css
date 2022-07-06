@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #f0f0f1;
+  background-color: rgb(235, 236, 240);
   font-family: 'Montserrat', sans-serif;
 }
 .container {
@@ -14,14 +14,14 @@ body {
   display: inline-block;
   padding: 16px 32px;
   text-decoration: none;
-  color: #babecc;
+  color: rgb(186, 190, 204);
 }
 .navLink.active {
-  color: #9a9ea8;
+  color: rgb(154, 158, 168);
 }
 .navLink:hover {
   display: inline-block;
   padding: 16px 32px;
   text-decoration: none;
-  color: #9a9ea8;
+  color: rgb(154, 158, 168);
 }

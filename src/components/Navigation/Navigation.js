@@ -10,7 +10,7 @@ function Navigation() {
   return (
     <header className={css.header}>
       <div className={`container ${css.flexingNav}`}>
-        <Link to={'/'}>
+        <Link to={'/home'}>
           <img
             className={css.img}
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png'
@@ -19,12 +19,12 @@ function Navigation() {
         </Link>
         <nav>
           {isUserLoggedIn && (
-            <NavLink to='/' className='navLink'>
+            <NavLink to='/home' className='navLink'>
               Home
             </NavLink>
           )}
           {!isUserLoggedIn && (
-            <NavLink to='/login' className='navLink'>
+            <NavLink exact to='/' className='navLink'>
               Login
             </NavLink>
           )}
@@ -34,7 +34,7 @@ function Navigation() {
             </NavLink>
           )}
           {isUserLoggedIn && (
-            <NavLink to='/login' onClick={logout} className='navLink'>
+            <NavLink exact to='/' onClick={logout} className='navLink'>
               log out
             </NavLink>
           )}

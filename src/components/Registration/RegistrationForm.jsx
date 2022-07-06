@@ -43,71 +43,84 @@ function RegisterForm() {
   return (
     <div>
       {registration ? (
-        <h2>
-          registration success please <Link to='/login'>Login</Link>
-        </h2>
+        <div className={style.success}>
+          <h2 className={style.title}>
+            Registration success please <Link to='/login'>Login</Link>
+          </h2>
+        </div>
       ) : (
-        <form onSubmit={formik.handleSubmit}>
-          <input
-            className={formik.touched.username && formik.errors.username && `${style.errorInput}`}
-            type='text'
-            name='username'
-            placeholder='Username'
-            onChange={formik.handleChange}
-            value={formik.values.username}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.username && formik.errors.username ? (
-            <p className={style.errorMsg}>{formik.errors.username}</p>
-          ) : (
-            ''
-          )}
-          <input
-            className={formik.touched.email && formik.errors.email && `${style.errorInput}`}
-            type='text'
-            name='email'
-            placeholder='Email'
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <p className={style.errorMsg}>{formik.errors.email}</p>
-          ) : (
-            ''
-          )}
-          <input
-            className={formik.touched.password && formik.errors.password && `${style.errorInput}`}
-            type='password'
-            name='password'
-            placeholder='Password'
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <p className={style.errorMsg}>{formik.errors.password}</p>
-          ) : (
-            ''
-          )}
-          <input
-            className={
-              formik.touched.repPassword && formik.errors.repPassword && `${style.errorInput}`
-            }
-            type='password'
-            name='repPassword'
-            placeholder='Repeat password'
-            onChange={formik.handleChange}
-            value={formik.values.repPassword}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.repPassword && formik.errors.repPassword ? (
-            <p className={style.errorMsg}>{formik.errors.repPassword}</p>
-          ) : (
-            ''
-          )}
-          <button type='submit'>Register</button>
-        </form>
+        <div>
+          <h1 className={style.title}>Registration</h1>
+          <form onSubmit={formik.handleSubmit} className={style.form}>
+            <input
+              className={`${style.input} ${
+                formik.touched.username && formik.errors.username && `${style.errorInput}`
+              }`}
+              type='text'
+              name='username'
+              placeholder='Username'
+              onChange={formik.handleChange}
+              value={formik.values.username}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <p className={style.errorMsg}>{formik.errors.username}</p>
+            ) : (
+              ''
+            )}
+            <input
+              className={`${style.input} ${
+                formik.touched.email && formik.errors.email && `${style.errorInput}`
+              }`}
+              type='text'
+              name='email'
+              placeholder='Email'
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <p className={style.errorMsg}>{formik.errors.email}</p>
+            ) : (
+              ''
+            )}
+            <input
+              className={`${style.input} ${
+                formik.touched.password && formik.errors.password && `${style.errorInput}`
+              }`}
+              type='password'
+              name='password'
+              placeholder='Password'
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <p className={style.errorMsg}>{formik.errors.password}</p>
+            ) : (
+              ''
+            )}
+            <input
+              className={`${style.input} ${
+                formik.touched.repPassword && formik.errors.repPassword && `${style.errorInput}`
+              }`}
+              type='password'
+              name='repPassword'
+              placeholder='Repeat password'
+              onChange={formik.handleChange}
+              value={formik.values.repPassword}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.repPassword && formik.errors.repPassword ? (
+              <p className={style.errorMsg}>{formik.errors.repPassword}</p>
+            ) : (
+              ''
+            )}
+            <button className={style.button} type='submit'>
+              Register
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );

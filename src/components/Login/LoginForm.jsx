@@ -37,13 +37,16 @@ function LoginForm({ onSuccessLogin }) {
   });
 
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className={css.div}>
+      <h1 className={css.title}>Sign up</h1>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
         <input
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.email}
-          className={formik.touched.email && formik.errors.email ? css.errorInput : ''}
+          className={`${css.input} ${
+            formik.touched.email && formik.errors.email ? css.errorInput : ''
+          }`}
           name='email'
           type='text'
           placeholder='Your Email'
@@ -55,7 +58,9 @@ function LoginForm({ onSuccessLogin }) {
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.password}
-          className={formik.touched.password && formik.errors.password ? css.errorInput : ''}
+          className={`${css.input} ${
+            formik.touched.password && formik.errors.password ? css.errorInput : ''
+          }`}
           name='password'
           type='password'
           placeholder='Your password'
@@ -63,7 +68,9 @@ function LoginForm({ onSuccessLogin }) {
         {formik.touched.password && formik.errors.password && (
           <p className={css.errorMsg}>{formik.errors.password}</p>
         )}
-        <button type='submit'>Login</button>
+        <button className={css.button} type='submit'>
+          Login
+        </button>
       </form>
     </div>
   );

@@ -1,3 +1,41 @@
+.title {
+  text-align: center;
+  color: rgb(187, 191, 205);
+}
+.form {
+  margin: 0 auto;
+  width: 300px;
+  padding: 16px;
+}
+.input {
+  border: none;
+  border-radius: 160px;
+  padding: 16px;
+  background-color: rgb(235, 235, 235);
+  text-shadow: 1px 1px 0 white;
+  margin-right: 8px;
+  box-shadow: inset 2px 2px 5px rgb(187, 191, 205), inset -5px -5px 10px white;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  margin-bottom: 10px;
+}
+.input:hover,
+.button:hover {
+  box-shadow: -2px -2px 5px white, 2px 2px 5px rgb(187, 191, 205);
+}
+.button {
+  border: none;
+  width: 100%;
+  border-radius: 160px;
+  padding: 16px;
+  color: #61677c;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px white, 5px 5px 20px rgb(187, 191, 205);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+}
+
 .errorMsg {
   margin-top: 0;
   color: tomato;
@@ -5,4 +43,7 @@
 .errorInput {
   border-color: tomato;
   background-color: rgb(239, 163, 150);
+}
+.success {
+  margin-top: 50px;
 }

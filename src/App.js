@@ -15,25 +15,27 @@ function App() {
       <Navigation />
       <Switch>
         {isUserLoggedIn && (
+          <Route path='/home'>
+            <Home />
+          </Route>
+        )}
+        {isUserLoggedIn && (
           <Route path='/add'>
             <Add />
           </Route>
         )}
-
-        <Route path='/login'>
-          <Login />
-        </Route>
         <Route path='/register'>
           <Register />
         </Route>
-        {isUserLoggedIn && (
-          <Route path='/'>
-            <Home />
-          </Route>
-        )}
-
+        <Route exact path='/'>
+          <Login />
+        </Route>
         <Route path='*'>
-          <h2>404 Not found</h2>
+          {isUserLoggedIn ? (
+            <h2> toks puslapis neegzsistuoja</h2>
+          ) : (
+            <h2>jus esate neprisiregistraves</h2>
+          )}
         </Route>
       </Switch>
     </div>
