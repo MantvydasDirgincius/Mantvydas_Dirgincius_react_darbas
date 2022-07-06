@@ -34,32 +34,42 @@ export default function AddForm() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <input
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.title}
-        className={formik.touched.title && formik.errors.title ? css.errorInput : ''}
-        name='title'
-        type='text'
-        placeholder='Your Title'
-      />
-      {formik.touched.title && formik.errors.title && (
-        <p className={css.errorMsg}>{formik.errors.title}</p>
-      )}
-      <input
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.description}
-        className={formik.touched.description && formik.errors.description ? css.errorInput : ''}
-        name='description'
-        type='description'
-        placeholder='Your description'
-      />
-      {formik.touched.description && formik.errors.description && (
-        <p className={css.errorMsg}>{formik.errors.description}</p>
-      )}
-      <button type='submit'>Submit</button>
-    </form>
+    <div>
+      <h1 className={css.title}>Add</h1>
+      <form className={css.form} onSubmit={formik.handleSubmit}>
+        <input
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.title}
+          className={`${css.input} ${
+            formik.touched.title && formik.errors.title ? css.errorInput : ''
+          }`}
+          name='title'
+          type='text'
+          placeholder='Your Title'
+        />
+        {formik.touched.title && formik.errors.title && (
+          <p className={css.errorMsg}>{formik.errors.title}</p>
+        )}
+        <input
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          value={formik.values.description}
+          className={`${css.input} ${
+            formik.touched.description && formik.errors.description ? css.errorInput : ''
+          }`}
+          name='description'
+          type='description'
+          placeholder='Your description'
+        />
+
+        {formik.touched.description && formik.errors.description && (
+          <p className={css.errorMsg}>{formik.errors.description}</p>
+        )}
+        <button className={css.button} type='submit'>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
