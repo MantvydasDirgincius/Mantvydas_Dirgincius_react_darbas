@@ -12,7 +12,7 @@ function PageNotFound() {
         <h2 className={css.title}> Page not found</h2>
       ) : (
         <h2 className={css.title}>
-          You're not logged in! Please login in <Link to='/login'>Login</Link>
+          You're not logged in! Please login in <Link to='/'>Login</Link>
         </h2>
       )}
     </div>

@@ -35,7 +35,7 @@ function Navigation() {
           )}
           {isUserLoggedIn && (
             <NavLink exact to='/' onClick={logout} className='navLink'>
-              log out
+              Log out
             </NavLink>
           )}
           {!isUserLoggedIn && (

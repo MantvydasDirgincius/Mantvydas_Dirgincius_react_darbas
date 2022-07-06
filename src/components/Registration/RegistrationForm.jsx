@@ -2,8 +2,9 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import style from './RegisterForm.module.css';
 import * as Yup from 'yup';
-import { doPostRequest } from '../../utils';
+import { baseUrl, doPostRequest } from '../../utils';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const initValues = {
   username: '',
@@ -28,13 +29,10 @@ function RegisterForm() {
         password: values.password,
       };
 
-      const result = await doPostRequest(
-        'https://autumn-delicate-wilderness.glitch.me/v1/auth/register',
-        newUser
-      );
-      console.log('result ===', result);
+      const result = await doPostRequest(`${baseUrl}v1/auth/register`, newUser);
+
       if (result.changes !== 1) {
-        console.log('Registracion false');
+        toast.error('Registracion false');
         return;
       }
       setRegistration(true);
@@ -42,6 +40,7 @@ function RegisterForm() {
   });
   return (
     <div>
+      <Toaster />
       {registration ? (
         <div className={style.success}>
           <h2 className={style.title}>

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { AuthContext } from '../../store/authContext';
-import { doGetRequest } from '../../utils';
+import { baseUrl, doGetRequest } from '../../utils';
 import CardList from '../Card/CardList';
 import css from './Home.module.css';
 
@@ -11,10 +11,7 @@ function HomeComp() {
   const { token } = useContext(AuthContext);
 
   async function GetingRecords() {
-    const records = await doGetRequest(
-      'https://autumn-delicate-wilderness.glitch.me/v1/content/skills',
-      token
-    );
+    const records = await doGetRequest(`${baseUrl}v1/content/skills`, token);
     if (records.length === 0) {
       setHaveRecords(true);
     }

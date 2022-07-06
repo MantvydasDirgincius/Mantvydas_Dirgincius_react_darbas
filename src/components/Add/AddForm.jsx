@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { useContext } from 'react';
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
-import { doPostRequest } from '../../utils';
+import { baseUrl, doPostRequest } from '../../utils';
 import css from './AddForm.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -13,8 +13,9 @@ const initValues = {
 export default function AddForm() {
   const { token } = useContext(AuthContext);
   const notify = () =>
-    toast('Here is your toast.', {
+    toast('Created successfully', {
       duration: 2000,
+
       position: 'top-center',
       ariaProps: {
         role: 'status',
@@ -29,16 +30,11 @@ export default function AddForm() {
       description: Yup.string().min(5).max(15).required('Required'),
     }),
     onSubmit: async (values, { resetForm }) => {
-      const result = await doPostRequest(
-        'https://autumn-delicate-wilderness.glitch.me/v1/content/skills',
-        values,
-        token
-      );
+      const result = await doPostRequest(`${baseUrl}v1/content/skills`, values, token);
       resetForm({ values: '' });
 
       if (result.msg === 'Added new skill to account') {
         notify();
-        console.log('sukurta');
       }
     },
   });

@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
-import { doPostRequest } from '../../utils';
+import { baseUrl, doPostRequest } from '../../utils';
 import css from './LoginForm.module.css';
 
 const initValues = {
@@ -20,15 +20,11 @@ function LoginForm({ onSuccessLogin }) {
       password: Yup.string().min(4).required('Required'),
     }),
     onSubmit: async (values) => {
-      const result = await doPostRequest(
-        'https://autumn-delicate-wilderness.glitch.me/v1/auth/login',
-        values
-      );
-      console.log('result ===', result);
-      console.log('result.token ===', result.token);
+      const result = await doPostRequest(`${baseUrl}v1/auth/login`, values);
+
       if (!result.token) {
         setErr(result.err);
-        console.log('False token');
+
         return;
       }
 
