@@ -1,11 +1,10 @@
 import { useFormik } from 'formik';
 import { useContext } from 'react';
-
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
-
 import { doPostRequest } from '../../utils';
 import css from './AddForm.module.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const initValues = {
   title: '',
@@ -13,21 +12,32 @@ const initValues = {
 };
 export default function AddForm() {
   const { token } = useContext(AuthContext);
+  const notify = () =>
+    toast('Here is your toast.', {
+      duration: 2000,
+      position: 'top-center',
+      ariaProps: {
+        role: 'status',
+        'aria-live': 'polite',
+      },
+    });
 
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      title: Yup.string().min(5).required('Required'),
-      description: Yup.string().min(4).required('Required'),
+      title: Yup.string().min(4).required('Required'),
+      description: Yup.string().min(5).max(15).required('Required'),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       const result = await doPostRequest(
         'https://autumn-delicate-wilderness.glitch.me/v1/content/skills',
         values,
         token
       );
+      resetForm({ values: '' });
 
       if (result.msg === 'Added new skill to account') {
+        notify();
         console.log('sukurta');
       }
     },
@@ -35,6 +45,7 @@ export default function AddForm() {
 
   return (
     <div>
+      <Toaster />
       <h1 className={css.title}>Add</h1>
       <form className={css.form} onSubmit={formik.handleSubmit}>
         <input

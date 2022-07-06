@@ -45,7 +45,7 @@ function RegisterForm() {
       {registration ? (
         <div className={style.success}>
           <h2 className={style.title}>
-            Registration success please <Link to='/login'>Login</Link>
+            Registration success please <Link to='/'>Login</Link>
           </h2>
         </div>
       ) : (

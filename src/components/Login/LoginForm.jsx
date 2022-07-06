@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import * as Yup from 'yup';
 import { AuthContext } from '../../store/authContext';
@@ -12,6 +12,7 @@ const initValues = {
 };
 function LoginForm({ onSuccessLogin }) {
   const { login } = useContext(AuthContext);
+  const [err, setErr] = useState([]);
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
@@ -26,6 +27,7 @@ function LoginForm({ onSuccessLogin }) {
       console.log('result ===', result);
       console.log('result.token ===', result.token);
       if (!result.token) {
+        setErr(result.err);
         console.log('False token');
         return;
       }
@@ -54,6 +56,8 @@ function LoginForm({ onSuccessLogin }) {
         {formik.touched.email && formik.errors.email && (
           <p className={css.errorMsg}>{formik.errors.email}</p>
         )}
+        {err.length > 0 && <p className={css.errorMsg}>{err}</p>}
+
         <input
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
@@ -68,6 +72,7 @@ function LoginForm({ onSuccessLogin }) {
         {formik.touched.password && formik.errors.password && (
           <p className={css.errorMsg}>{formik.errors.password}</p>
         )}
+        {err.length > 0 && <p className={css.errorMsg}>{err}</p>}
         <button className={css.button} type='submit'>
           Login
         </button>
